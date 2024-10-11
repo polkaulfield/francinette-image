@@ -3,6 +3,7 @@
 RC_FILE="$HOME/.zshrc"
 
 if ! grep "francinette-image" "$RC_FILE" &> /dev/null; then
+printf "\nfunction francinette_start_container() {" "$HOME" >> "$RC_FILE"
 printf "\nif ! systemctl status docker | grep "running" &> /dev/null; then" "$HOME" >> "$RC_FILE"
 printf "\n\t\techo \"[Francinette] Starting Docker...\"" "$HOME" >> "$RC_FILE"
 printf "\n\t\tsleep 1" "$HOME" >> "$RC_FILE"
@@ -20,6 +21,7 @@ printf "\n\tif docker run -d -i -v /home:/home -v /goinfre:/goinfre -v /sgoinfre
 printf "\n\t\tdocker start run-paco" "$HOME" >> "$RC_FILE"
 printf "\n\tfi" "$HOME" >> "$RC_FILE"
 printf "\nfi" "$HOME" >> "$RC_FILE"
+printf "\n}" "$HOME" >> "$RC_FILE"
 fi
 
 if ! grep "francinette=" "$RC_FILE" &> /dev/null; then
